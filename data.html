@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> table </title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+
+<div class="split left">
+  <center>
+    <h2>Employee Task Record</h2>
+  </center>
+
+  <table border="2" id="myTable">
+   <thead>
+<tr >
+<th nowrap>S.no</th>      
+<th nowrap>Name</th>      
+<th nowrap>Email</th>
+<th nowrap>Phone</th>
+<th nowrap>Image</th>
+</tr>
+</thead>
+<tbody >
+</tbody>
+  </table>
+</div>
+<div class="split right">
+  <center>
+    <form id="first_form" method="post" action="" onclick="feedTable()">
+      Name: <input type="text" id="name" name="name" value="">
+      <br><br> Email: <input type="email" id="email" name="email" value=""><br>
+      <br> Phone Number <input type="number" id="phone" name="phone" value=""> <br><br>
+     Image <input type="file" id="image" name="file" > <br> <br> 
+     
+      <button type="button" class="w3-btn w3-blue" id="save">Save</button>
+    </form>
+</div>
+<script>
+
+$('#save').on('click', function() {
+var name=$('#name').val();
+var email=$('#email').val();
+var phone=$('#phone').val();
+var image = $('#image').val();
+var count = $('#myTable tr').length;
+if(name!="" && email !="" && phone!="" && image!=""){
+$('#myTable tbody').append('<tr class="child"><td>'+count+'</td><td>'+name+'</td><td>'+email+'</td><td>'+phone+'</td><td>'+image+'</td><td><a href="javascript:void(0);" class="remCF1 btn btn-small btn-danger">Remove</a></td></tr>');
+}
+});
+$(document).on('click','.remCF1',function(){
+$(this).parent().parent().remove();
+$('#myTable tbody tr').each(function(i){            
+ $($(this).find('td')[0]).html(i+1);          
+});
+});
+</script>
+</body>
+</html>
